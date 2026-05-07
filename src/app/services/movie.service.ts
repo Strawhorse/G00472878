@@ -22,7 +22,11 @@ export class MovieService {
   // return type will be something like a stream for the JSON info the api sends back to us
 
   getTrendingMovieList(): Observable<any> {
-    var url = '${environment.tmdbBaseUrl}/trending/movie/day?api_key=${environment.tmdbApiKey}';
+
+
+    // error located here, I was using normal quotes and not the backticks for the required syntax
+    // var url = '${environment.tmdbBaseUrl}/trending/movie/day?api_key=${environment.tmdbApiKey}';
+    var url = `${environment.tmdbBaseUrl}/trending/movie/day?api_key=${environment.tmdbApiKey}`;
 
     // now return what it receives with this api call that uses the key from the env variable
     return this.http.get(url);
