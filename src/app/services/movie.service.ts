@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';     // the return object - it's basically just something like a stream of data
 
 // now import the environment variables I added earlier for the api key
-import { environment } from 'src/environments/environment.prod';
+import { environment } from '../../environments/environment';
+
 
 
 
