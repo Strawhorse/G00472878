@@ -1,20 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+
+// get some icons for the bottom
+import { home, film, people, star } from 'ionicons/icons';
+
+
+
+
 
 @Component({
   selector: 'app-tabs-bar',
   templateUrl: './tabs-bar.page.html',
   styleUrls: ['./tabs-bar.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonTitle, IonToolbar, IonHeader, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel]
 })
-export class TabsBarPage implements OnInit {
 
-  constructor() { }
+// imports might be a bit exsessive but I'll see what I need
 
-  ngOnInit() {
+
+export class TabsBarPage {
+
+  constructor() {
+
+    // this puts the Ionic icons into the html page
+    addIcons({ home, film, people, star });
   }
 
 }

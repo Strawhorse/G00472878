@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tabsBar</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tabsBar</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<!-- No header needed as menu bar will go at bottom and doens't need one -->
+<!-- <ion-header [translucent]="true"></ion-header> -->
+
+<ion-tabs>
+
+  <!--  places the bar at the bottom of the screen -->
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button tab="home" href="/tabs-bar/home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+<!-- icons are injected here as the ion-icon sections -->
+ <!-- Movie is now called film -->
+  <!-- will try to use minimal css for this, just simple styling because I'm not great at css -->
+
+    <ion-tab-button tab="movie" href="/tabs-bar/movie">
+      <ion-icon name="film"></ion-icon>
+      <ion-label>Movie</ion-label>
+    </ion-tab-button>
+
+
+
+
+    <ion-tab-button tab="cast" href="/tabs-bar/cast">
+      <ion-icon name="people"></ion-icon>
+      <ion-label>Cast/Crew</ion-label>
+    </ion-tab-button>
+
+
+
+    <ion-tab-button tab="favourites" href="/tabs-bar/favourites">
+      <ion-icon name="star"></ion-icon>
+      <ion-label>Favourites</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+
+</ion-tabs>

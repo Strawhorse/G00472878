@@ -31,7 +31,7 @@ export class SplashPage implements OnInit {
     // set a timer here to redirect to the splash screen
     // I think 1.5 seconds/1500 miliseconds is enough for this
     setTimeout(() => {
-      this.splashRouter.navigate(['/home']);
+      this.splashRouter.navigate(['/tabs-bar/home']);
     }, 1500);
   }
 
