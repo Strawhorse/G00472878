@@ -1,31 +1,35 @@
 
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     <ion-title>Main</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
 
 
-  <!-- Student no. at the top -->
-  <div class="name-banner">
+  <!-- Student no. at the top; removed, prefer it on the menu bar at the bottom -->
+  <!-- <div class="name-banner">
     <h2>{{ studentNumber }}</h2>
-  </div>
+  </div> -->
 
 
   <!-- Movie list display on homepage -->
 <ion-list>
 
-  <!-- <ion-item *ngFor="let movie of movies"> error telling me that this is deprecated, will use newer version-->
+  <!-- <ion-item *ngFor="let movie of movies"> error telling me that this is deprecated, will use newer version instead-->
 
+    <!-- begin iterating over movies -->
   @for (movie of movies; track movie.id) {
 
-  <ion-item>
+
+
+    <!-- to make the list of movies clickable and then use a method to go to the movie details -->
+  <ion-item button="true" (click)="goToMovie(movie.id)">  
+  <!-- <ion-item> -->
 
     <!-- after checking the docs, this keyword 'start' makes the output begin on the left side of this ion-item object -->
-    <ion-thumbnail slot="start">      
-
+    <ion-thumbnail slot="start">
       <img [src]="imageBaseUrl + movie.poster_path" [alt]="movie.title" />
     </ion-thumbnail>
 
@@ -34,6 +38,7 @@
       <h2>{{ movie.title }}</h2>
       <p>{{ movie.release_date }}</p>
     </ion-label>
+
 
   </ion-item>
   }

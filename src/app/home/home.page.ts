@@ -6,15 +6,18 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonList,
 import { MovieService } from '../services/movie.service'; // importing the movie service
 
 
+
+// also need a router import to handle clicking on movies to redirect to the movie paage
+import { Router } from '@angular/router';
+
+
 // linking the components to the html page itself
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [
-    CommonModule,     IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonThumbnail
-  ]
+  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonThumbnail]
 })
 
 
@@ -23,7 +26,7 @@ export class HomePage implements OnInit {
 
   // create some of the variables needed here
   studentNumber: string = 'G00472878';
-  movies: any[] = []; // array object here to hold the movies
+  movies: any[] = []; // array object here to hold the movies, can iterate over this to create a list of movies on the home page
 
 
   // the 'file not found' image which can be returned if there's a error
@@ -31,8 +34,9 @@ export class HomePage implements OnInit {
 
 
 
-  // injects the MovieService service
-  constructor(private movieService: MovieService) {}
+
+  // injects the MovieService service + the router import for redirect
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit() {
 
@@ -44,6 +48,12 @@ export class HomePage implements OnInit {
         console.error('Error fetching movies list from api:', err);
       }
     });
+  }
+
+
+  // create a method to redirect to a movie when the movie is clicked on this home page here, use the id number to locate
+  goToMovie(id: number) {
+    this.router.navigate(['/tabs-bar/movie', id]);
   }
 
 }

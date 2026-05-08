@@ -20,7 +20,11 @@ import { home, film, people, star } from 'ionicons/icons';
 // imports might be a bit exsessive but I'll see what I need
 
 
+
 export class TabsBarPage {
+
+// Add the stundent number variable here
+  studentNumber: string = 'G00472878';
 
   constructor() {
 

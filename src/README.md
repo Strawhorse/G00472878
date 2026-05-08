@@ -18,6 +18,7 @@ Student Number: G00472878
 - Angular
 - Capacitor (small use)
 - TMDB API
+- a lot of stackoverflow + Ionic and Angular webdocs
 
 Built on Azure Virtual Machine with ATU
 
@@ -25,6 +26,11 @@ Built on Azure Virtual Machine with ATU
 
 - Main page working now
 - Create splash page to run when app starts (opting for the Angular splash page rather than use Capacitor for device specific use)
+-  menu now working at the bottom, needed to reorder the routes to the pages, however
+- menu bar at bottom
+- student number moved to menu bar
+- movies now clickable and can route over to the Movie menu tab to be viewed
+...
 
 
 ## researching ionic functions ....

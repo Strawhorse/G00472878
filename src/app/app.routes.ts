@@ -27,7 +27,9 @@ export const routes: Routes = [
         loadComponent: () => import('./home/home.page').then(m => m.HomePage)
       },
       {
-        path: 'movie',
+
+        // movie path now needs to accept an id number that will call the movie api
+        path: 'movie/:id',
         loadComponent: () => import('./movie/movie.page').then(m => m.MoviePage)
       },
       {
