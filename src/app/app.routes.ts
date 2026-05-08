@@ -26,4 +26,8 @@ export const routes: Routes = [
     path: 'splash',
     loadComponent: () => import('./splash/splash.page').then( m => m.SplashPage)
   },
+  {
+    path: 'tabs-bar',
+    loadComponent: () => import('./tabs-bar/tabs-bar.page').then( m => m.TabsBarPage)
+  },
 ];
