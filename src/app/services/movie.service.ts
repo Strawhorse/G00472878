@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';     // the return object - it's basically jus
 import { environment } from '../../environments/environment';
 
 
+// import for capacitor persistence
+import { Preferences } from '@capacitor/preferences';
+
 
 
 @Injectable({
@@ -26,6 +29,10 @@ export class MovieService {
 
   // create the constructor first so it injects the HttpClient to talk to the api
   constructor (private http: HttpClient) {}
+
+
+
+
 
 
   // method to make the calls to the api that the Home Page can call to populate it
@@ -99,24 +106,50 @@ export class MovieService {
   }
 
 
+
+
+
   // Add a movie to favourites (c)hecks if already there) - adds the movie to the array at the top and returns the string message
-  addMovieToFavourites(movie: any): string {
+// issues with the return type of promise vs string in the movie.page.ts
+// found online: "The key change is adding await before both service calls — since they're now async then  they need to be awaited to get the actual string back rather than a promise"
+
+  async addMovieToFavourites(movie: any): Promise<string> {
     if (this.isMovieAFavourite(movie.id)) {
-      return 'This movie is already in your favourites!';
+      return 'This movie is already in your favourites, you dont need to save again';
     }
     this.favouriteMovies.push(movie);
+    await Preferences.set({
+      key: 'favouriteMovies',
+      value: JSON.stringify(this.favouriteMovies)
+    });
     return 'Movie added to favourites!';
   }
 
 
   // Removing a favourited movie, again schecks if there - removes the movie from array if there and returns the string message
-  removeMovieFromFavourites(movieId: number): string {
+  async removeMovieFromFavourites(movieId: number): Promise<string> {
     if (!this.isMovieAFavourite(movieId)) {
-      return 'This movie is not in your favourites!';
+      return 'This movie is not in your favourites, bad luck';
     }
+
+
     this.favouriteMovies = this.favouriteMovies.filter(movie => movie.id !== movieId);
+    await Preferences.set({
+      key: 'favouriteMovies',
+      value: JSON.stringify(this.favouriteMovies)
+    });
     return 'Movie removed from favourites!';
   }
 
+
+
+  // lastly, method to load the favourites from local storage when app boots up
+  async loadFavourites() {
+    // uses the same key value to pull the JSON values from local storage
+    const result = await Preferences.get({ key: 'favouriteMovies' });
+    if (result.value) {
+      this.favouriteMovies = JSON.parse(result.value);
+    }
+  }
     
 }

@@ -36,12 +36,11 @@ Built on Azure Virtual Machine with ATU
 - search bar addedd
 - movie alerts for when no movie found or with less than 3 characetrs in the search
 - creating a new person detail page to have actors on
-
-...
+- persisted favourites on local storage using Capacitor
 
 
 ## researching ionic functions ....
-Caching the Movie Page
-Ionic can do this, called Ion Router Outlet; by default caches pages. Need to use ionViewWillEnter instead of ngOnInit on pages we want to refresh when needed!!! Don't forget
+DONE: Caching the Movie Page
+DONE: Ionic can do this, called Ion Router Outlet; by default caches pages. Need to use ionViewWillEnter instead of ngOnInit on pages we want to refresh when needed!!! Don't forget
 
 

@@ -140,7 +140,7 @@ export class MoviePage implements OnInit {
 
   async addToFavourites() {
 
-    const message = this.movieService.addMovieToFavourites(this.movieDetails);
+    const message = await this.movieService.addMovieToFavourites(this.movieDetails);
     const alert = await this.alertController.create({
       header: 'Favourites',
       message: message,
@@ -152,7 +152,7 @@ export class MoviePage implements OnInit {
 
   
   async removeFromFavourites() {
-    const message = this.movieService.removeMovieFromFavourites(this.movieDetails.id);
+    const message = await this.movieService.removeMovieFromFavourites(this.movieDetails.id);
     const alert = await this.alertController.create({
       header: 'Favourites',
       message: message,
