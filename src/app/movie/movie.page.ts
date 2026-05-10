@@ -62,6 +62,10 @@ export class MoviePage implements OnInit {
     // check if the movie exists
     if (movieId) {
 
+        // setting the default movie ID to avoid errors
+      this.movieService.currentMovieId = +movieId;
+      
+
       // get movie details using the ID
       // returns the any we have in movie.service.ts
       this.movieService.getIndividualMovieDetails(+movieId).subscribe({

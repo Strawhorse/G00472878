@@ -13,6 +13,8 @@ import { environment } from '../../environments/environment';
 })
 export class MovieService {
 
+  // Store the last viewed movie ID
+  currentMovieId = 0;
 
   // create the constructor first so it injects the HttpClient to talk to the api
   constructor (private http: HttpClient) {}
@@ -26,6 +28,8 @@ export class MovieService {
     // error located here, I was using normal quotes and not the backticks for the required syntax
     // var url = '${environment.tmdbBaseUrl}/trending/movie/day?api_key=${environment.tmdbApiKey}';
     var url = `${environment.movieDatabaseUrl}/trending/movie/day?api_key=${environment.movieDatabaseApiKey}`;
+
+
 
     // now return what it receives with this api call that uses the key from the env variable
     return this.http.get(url);
