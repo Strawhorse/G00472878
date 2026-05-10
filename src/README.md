@@ -35,7 +35,7 @@ Built on Azure Virtual Machine with ATU
 - Favourites methods created for adding and removing
 - search bar addedd
 - movie alerts for when no movie found or with less than 3 characetrs in the search
-
+- creating a new person detail page to have actors on
 
 ...
 

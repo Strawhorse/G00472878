@@ -40,6 +40,14 @@ export const routes: Routes = [
         path: 'favourites',
         loadComponent: () => import('./favourites/favourites.page').then(m => m.FavouritesPage)
       },
+
+      // final route for the actor details page - ionic puts it by default outside this menu bar loop
+      // a;so need to make sure to add the :id or it won't search
+      {
+        path: 'person-detail/:id',
+        loadComponent: () => import('./person-detail/person-detail.page').then( m => m.PersonDetailPage)
+      },
+
       {
         path: '',
         redirectTo: 'home',
@@ -47,6 +55,7 @@ export const routes: Routes = [
       }
     ]
   }
+
 ];
 
 

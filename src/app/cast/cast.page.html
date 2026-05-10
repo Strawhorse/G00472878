@@ -39,7 +39,7 @@
 <!-- loop the cast list -->
     <ion-list>
       @for (member of castList; track member.id) {
-      <ion-item>
+        <ion-item button="true" (click)="goToPerson(member.id)">
 
 
         <!-- start tag again to begin on left -->

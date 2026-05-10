@@ -83,4 +83,12 @@ export class CastPage implements OnInit {
     this.pageRouter.navigate(['/tabs-bar/home']);
   }
 
+
+
+  // final method to make actors clickable
+  
+  goToPerson(personId: number) {
+    this.pageRouter.navigate(['/tabs-bar/person-detail', personId]);
+}
+
 }

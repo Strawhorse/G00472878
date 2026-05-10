@@ -83,6 +83,14 @@ export class MovieService {
 
 
 
+  // Gets the full details of a person/actor by their id
+  // I'm still just using the <any> type because I don't have the time to add interfaces for each of these object tygpes
+  getPersonDetails(id: number): Observable<any> {
+    const url = `${environment.movieDatabaseUrl}/person/${id}?api_key=${environment.movieDatabaseApiKey}`;
+    return this.http.get(url);
+  }
+
+
 
   // Check if a movie is already in favourites - returns a true or 
   // this method will be used with the below methods for adding or removing
