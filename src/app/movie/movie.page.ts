@@ -85,11 +85,18 @@ export class MoviePage implements OnInit {
       // Secondly, get the cast and crew using the same ID
       this.movieService.getMovieCredits(+movieId).subscribe({
         next: (response) => {
+
+          // might be a lot of cast so we'll just slice the top people
           this.castList = response.cast.slice(0, 10);
           this.crewList = response.crew.slice(0, 5);
+
+          // Store in service so that the cast page can access them
+          this.movieService.currentCastList = this.castList;
+          this.movieService.currentCrewList = this.crewList;
+
         },
         error: (err) => {
-          console.error('Error fetching cast and crew:', err);
+          console.error('Error fetching the cast and crew. SOrry:', err);
         }
       });
 

@@ -16,6 +16,10 @@ export class MovieService {
   // Store the last viewed movie ID
   currentMovieId = 0;
 
+  // Create some arrays to hold the cast and crew so it can be used across pages
+  currentCastList: any[] = [];
+  currentCrewList: any[] = [];
+
     // Store the array  of favourite movies
   favouriteMovies: any[] = [];
   

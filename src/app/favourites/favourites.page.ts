@@ -14,10 +14,7 @@ import { MovieService } from '../services/movie.service';
   styleUrls: ['./favourites.page.scss'],
   standalone: true,
   imports: [
-    CommonModule,
-    IonContent, IonHeader, IonTitle, IonToolbar,
-    IonList, IonItem, IonLabel, IonThumbnail,
-    IonButton
+    CommonModule, IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonThumbnail, IonButton
   ]
 })
 

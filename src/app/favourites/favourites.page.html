@@ -1,11 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>favourites</ion-title>
+    <ion-title>Favourites</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+
+<!-- Old code -->
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">favourites</ion-title>
     </ion-toolbar>
@@ -14,6 +16,45 @@
   <div id="container">
     <p>This is the favourites page</p>
     <p>Favourite movies will go here</p>
-  </div>
+  </div> -->
+
+
+
+
+    <!-- Shows this message if there are no favourites yet -->
+<!-- checks the favouriteMovies array in the favourite.page.ts file  -->
+
+    @if (favouriteMovies.length === 0) {
+
+      <div class="no-favourites">
+        <h3>No favourites added yet</h3>
+        <p>Go to a movie page and tap the Add to Favourites button</p>
+      </div>
+  
+    } @else {
+  
+      <!-- Favourites list iterating -->
+      <ion-list>
+        @for (movie of favouriteMovies; track movie.id) {
+        <ion-item>
+  
+          <ion-thumbnail slot="start">
+            <img [src]="defaultMovieImageUrl + movie.poster_path" [alt]="movie.title" />
+          </ion-thumbnail>
+  
+          <ion-label (click)="goToMovie(movie.id)">
+            <h2>{{ movie.title }}</h2>
+            <p>{{ movie.release_date }}</p>
+          </ion-label>
+  
+          <!-- interestingly, ionic calls the bright red colour 'danger' lol -->
+          <ion-button slot="end" color="danger" (click)="removeFromFavourites(movie.id)">Delete movie</ion-button>
+  
+        </ion-item>
+        }
+      </ion-list>
+  
+    }
+
 
 </ion-content>
