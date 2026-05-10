@@ -1,12 +1,14 @@
-// This file can be replaced during build by using the `fileReplacements` array.
+
+
+
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
   production: false,
-  tmdbApiKey: 'dcaa68b8ed74bede1d4dcf7a2e00fc53',
+  movieDatabaseApiKey: 'dcaa68b8ed74bede1d4dcf7a2e00fc53',
   // tmdbAccessToken: 'your-new-access-token-here', Not needed here, although this apparently is a newer method
-  tmdbBaseUrl: 'https://api.themoviedb.org/3'
+  movieDatabaseUrl: 'https://api.themoviedb.org/3'
 };
 
 // It's generally not good to expose any api keys to the public or where someone could decrypt it from an app, but since I'm just building a college app
