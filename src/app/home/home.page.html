@@ -1,9 +1,24 @@
 
 <ion-header [translucent]="true">
+
+  
+  <ion-toolbar>
+    <ion-title>Movies</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      placeholder="Search for a movie..."
+      (ionInput)="searchMovies($event)"
+      (ionClear)="clearSearch()">
+    </ion-searchbar>
+  </ion-toolbar>
+  
+  
   <!-- <ion-toolbar>
     <ion-title>Main</ion-title>
-  </ion-toolbar>
-</ion-header> -->
+  </ion-toolbar> -->
+
+</ion-header>
 
 <ion-content [fullscreen]="true">
 

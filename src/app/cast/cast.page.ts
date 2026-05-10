@@ -76,4 +76,11 @@ export class CastPage implements OnInit {
     this.pageRouter.navigate(['/tabs-bar/movie', this.movieService.currentMovieId]);
   }
 
+
+
+  // also include a button for going to home page
+  goToHome() {
+    this.pageRouter.navigate(['/tabs-bar/home']);
+  }
+
 }

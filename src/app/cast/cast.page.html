@@ -1,19 +1,80 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>cast</ion-title>
+    <ion-title>Cast/crew</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cast</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <p>This is the cast and crew details page</p>
-    <p>Cast and crew details will go here</p>
-  </div>
+
+
+<ion-content [fullscreen]="true">
+
+
+<!-- check to see if cast crew arrays are empty -->
+  @if (castList.length === 0 && crewList.length === 0) {
+
+    <div class="no-cast">
+      <h3>No cast or crew yet</h3>
+      <p>Go to the Home page and select a movie first, please</p>
+      <ion-button (click)="goToHome()">Go to Home</ion-button>
+    </div>
+
+
+
+
+  } @else {
+
+    <!-- Back to movie button -->
+    <div class="back-button">
+      <ion-button (click)="goToMovie()">Back to movie</ion-button>
+    </div>
+
+    <!-- Cast Section -->
+    <div class="section-title">
+      <h2>Cast</h2>
+    </div>
+
+
+
+<!-- loop the cast list -->
+    <ion-list>
+      @for (member of castList; track member.id) {
+      <ion-item>
+
+
+        <!-- start tag again to begin on left -->
+        <ion-thumbnail slot="start">
+          <img [src]="defaultMovieImageUrl + member.profile_path" [alt]="member.name" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ member.name }}</h2>
+          <p>{{ member.character }}</p>
+        </ion-label>
+      </ion-item>
+      }
+    </ion-list>
+
+
+
+
+    <!-- Crew details    -->
+    <div class="section-title">
+      <h2>Crew</h2>
+    </div>
+
+
+    <!-- Don't think you can have a movie with no cast but with crew, hard to recreate an error like thisS -->
+    <ion-list>
+      @for (member of crewList; track member.id) {
+      <ion-item>
+        <ion-label>
+          <h2>{{ member.name }}</h2>
+          <p>{{ member.job }}</p>
+        </ion-label>
+      </ion-item>
+      }
+    </ion-list>
+
+  }
 
 </ion-content>

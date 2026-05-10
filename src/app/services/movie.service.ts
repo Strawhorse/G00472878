@@ -72,6 +72,17 @@ export class MovieService {
 
 
 
+    // search service; search for movies by name on the home page
+  searchMovies(query: string): Observable<any> {
+    
+    // already have the search api stringr from earlier
+    const url = `${environment.movieDatabaseUrl}/search/movie?query=${query}&api_key=${environment.movieDatabaseApiKey}`;
+    return this.http.get(url);
+}
+
+
+
+
 
   // Check if a movie is already in favourites - returns a true or 
   // this method will be used with the below methods for adding or removing

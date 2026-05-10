@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, 
-  IonItem, IonLabel, IonThumbnail } from '@ionic/angular/standalone'; // import the components
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonThumbnail, IonSearchbar } from '@ionic/angular/standalone'; 
 
+
+// import the components
 import { MovieService } from '../services/movie.service'; // importing the movie service
 
 
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonThumbnail]
+  imports: [IonSearchbar, CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonThumbnail]
 })
 
 
@@ -55,5 +56,39 @@ export class HomePage implements OnInit {
   goToMovie(id: number) {
     this.router.navigate(['/tabs-bar/movie', id]);
   }
+
+
+  // Search bar functionality
+  // Search for movies when you type in the search bar
+  searchMovies(event: any) {
+
+    // gets the text the user typed
+    const query = event.target.value;
+
+    // Only search if there are min. 3 characters typed
+    if (query && query.length >= 3) {
+      this.movieService.searchMovies(query).subscribe({
+        next: (response) => {
+          this.movies = response.results;
+        },
+        error: (err) => {
+          console.error('Error searching movies, more letters needed:', err);
+        }
+      });
+    }
+  }
+
+  // When search is cleared go back to trending movies - i.e. reset the home pages
+  clearSearch() {
+    this.movieService.getTrendingMovieList().subscribe({
+      next: (response) => {
+        this.movies = response.results;
+      },
+      error: (err) => {
+        console.error('Error fetching trending movies, returning back to trending movies:', err);
+      }
+    });
+  }
+
 
 }

@@ -63,6 +63,13 @@ export class MoviePage implements OnInit {
     // check if the movie exists
     if (movieId) {
 
+
+        // Clear previous cast and crew first - this was causing issues where I could see the details of one movie but the cast of a difvfernt movie
+      this.movieService.currentCastList = [];
+      this.movieService.currentCrewList = [];
+      this.castList = [];
+      this.crewList = [];
+
         // setting the default movie ID to avoid errors
       this.movieService.currentMovieId = +movieId;
       
