@@ -1,19 +1,116 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>movie</ion-title>
+    <ion-title>Movie details page</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">movie</ion-title>
     </ion-toolbar>
   </ion-header>
 
+  
+
   <div id="container">
     <p>This is the movie details page</p>
     <p>Selected movies' details will go here</p>
-  </div>
+  </div> -->
+
+
+  <!-- Movie Details Section -->
+
+
+  <!-- shows content once the API has returned data; like in the lectures, the @if is a promise (async, if I remember) -->
+
+  @if (movieDetails) {
+
+
+    <!-- creates the image from the default movie path and the movie poster added together -->
+    <div class="movie-poster">
+      <img [src]="defaultMovieImageUrl + movieDetails.poster_path" [alt]="movieDetails.title" />
+    </div>
+
+
+    <!-- // also using the variables declared in movie.page.ts to populate the details here -->
+    <div class="movie-info">
+      <h1>{{ movieDetails.title }}</h1>
+      <p class="release-date">{{ movieDetails.release_date }}</p>
+      <p class="overview">{{ movieDetails.overview }}</p>
+    </div>
+
+
+
+
+    <!-- buttons to control the actions on the page -->
+    <div class="action-buttons">
+      <ion-button (click)="goToHomePage()">Home</ion-button>
+      <ion-button (click)="goToFavourites()">Favourites</ion-button>
+      <ion-button color="success" (click)="addToFavourites()">Add to Favourites</ion-button>
+      <ion-button color="danger" (click)="removeFromFavourites()">Remove from Favourites</ion-button>
+    </div>
+
+
+
+
+
+
+    <!-- Movie cast Section -->
+    <div class="section-title">
+      <h2>Cast</h2>
+    </div>
+
+    <ion-list>
+      @for (member of castList; track member.id) {
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img [src]="defaultMovieImageUrl + member.profile_path" [alt]="member.name" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ member.name }}</h2>
+          <p>{{ member.character }}</p>
+        </ion-label>
+      </ion-item>
+      }
+    </ion-list>
+
+
+
+
+
+    <!-- Crew ection, another loop -->
+    <div class="section-title">
+      <h2>Crew</h2>
+    </div>
+
+    <ion-list>
+      @for (member of crewList; track member.id) {
+      <ion-item>
+        <ion-label>
+          <h2>{{ member.name }}</h2>
+          <p>{{ member.job }}</p>
+        </ion-label>
+      </ion-item>
+      }
+    </ion-list>
+
+  }
+  
+
+  @else {
+
+    <div class="if-no-movie">
+      <h3>No movie was selected, sorry</h3>
+      <p>Go to the Home page and select a movie to view its  back here</p>
+      <p>It's a common mistake, could happen to anyone...</p>
+      <ion-button (click)="goToHomePage()">Go to Home</ion-button>
+    </div>
+  
+  }
+
+
+  
 
 </ion-content>

@@ -22,7 +22,12 @@
  <!-- Movie is now called film -->
   <!-- will try to use minimal css for this, just simple styling because I'm not great at css -->
 
-    <ion-tab-button tab="movie" href="/tabs-bar/movie">
+
+<!-- need a way to deal with people trying to access the other pages when the app first loads, use an ionic alert -->
+
+    <ion-tab-button tab="movie" (click)="showNoMovieAlert()">
+
+    <!-- <ion-tab-button tab="movie" href="/tabs-bar/movie"> -->
       <ion-icon name="film"></ion-icon>
       <ion-label>Movie</ion-label>
     </ion-tab-button>

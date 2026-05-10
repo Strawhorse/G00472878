@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonThumbnail, IonBadge } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../services/movie.service';
+import { IonLabel } from "@ionic/angular/standalone";
 
 
 
@@ -17,7 +18,12 @@ import { MovieService } from '../services/movie.service';
   standalone: true,
 
 
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    CommonModule,
+    IonContent, IonHeader, IonTitle, IonToolbar,
+    IonList, IonItem, IonLabel, IonButton,
+    IonThumbnail
+  ]
 })
 
 
@@ -33,7 +39,7 @@ export class MoviePage implements OnInit {
   movieDetails: any = null;
   castList: any[] = [];
   crewList: any[] = [];
-  defaultImageUrl: string = 'https://image.tmdb.org/t/p/w342';
+  defaultMovieImageUrl: string = 'https://image.tmdb.org/t/p/w342';
 
 
 
@@ -109,5 +115,15 @@ export class MoviePage implements OnInit {
   }
 
 
+
+
+  // should declare these but will add code a bit later
+  addToFavourites() {
+    // logic to save movie to favourites list
+  }
+  
+  removeFromFavourites() {
+    // logic to remove movie from favourites list
+  }
 
 }
