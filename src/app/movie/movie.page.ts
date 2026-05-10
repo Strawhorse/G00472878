@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 import { IonLabel } from "@ionic/angular/standalone";
 
-
+import { AlertController } from '@ionic/angular/standalone'
 
 // work here is to list the movie details based on the movie that the user cliocks on in the homepage
 
@@ -47,7 +47,8 @@ export class MoviePage implements OnInit {
   constructor(
     private currentRoute: ActivatedRoute,
     private pageRouter: Router,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -121,13 +122,28 @@ export class MoviePage implements OnInit {
 
 
 
-  // should declare these but will add code a bit later
-  addToFavourites() {
-    // logic to save movie to favourites list
+  // async methods for adding or removing movies from the favourites list
+
+  async addToFavourites() {
+
+    const message = this.movieService.addMovieToFavourites(this.movieDetails);
+    const alert = await this.alertController.create({
+      header: 'Favourites',
+      message: message,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
   
-  removeFromFavourites() {
-    // logic to remove movie from favourites list
-  }
 
+  
+  async removeFromFavourites() {
+    const message = this.movieService.removeMovieFromFavourites(this.movieDetails.id);
+    const alert = await this.alertController.create({
+      header: 'Favourites',
+      message: message,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 }

@@ -16,6 +16,10 @@ export class MovieService {
   // Store the last viewed movie ID
   currentMovieId = 0;
 
+    // Store the array  of favourite movies
+  favouriteMovies: any[] = [];
+  
+
   // create the constructor first so it injects the HttpClient to talk to the api
   constructor (private http: HttpClient) {}
 
@@ -60,6 +64,36 @@ export class MovieService {
   getMovieCredits(id: number): Observable<any> {
     const url = `${environment.movieDatabaseUrl}/movie/${id}/credits?api_key=${environment.movieDatabaseApiKey}`;
     return this.http.get(url);
-}
+  }
+
+
+
+
+  // Check if a movie is already in favourites - returns a true or 
+  // this method will be used with the below methods for adding or removing
+  isMovieAFavourite(movieId: number): boolean {
+    return this.favouriteMovies.some(movie => movie.id === movieId);
+  }
+
+
+  // Add a movie to favourites (c)hecks if already there) - adds the movie to the array at the top and returns the string message
+  addMovieToFavourites(movie: any): string {
+    if (this.isMovieAFavourite(movie.id)) {
+      return 'This movie is already in your favourites!';
+    }
+    this.favouriteMovies.push(movie);
+    return 'Movie added to favourites!';
+  }
+
+
+  // Removing a favourited movie, again schecks if there - removes the movie from array if there and returns the string message
+  removeMovieFromFavourites(movieId: number): string {
+    if (!this.isMovieAFavourite(movieId)) {
+      return 'This movie is not in your favourites!';
+    }
+    this.favouriteMovies = this.favouriteMovies.filter(movie => movie.id !== movieId);
+    return 'Movie removed from favourites!';
+  }
+
     
 }

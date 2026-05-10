@@ -30,6 +30,11 @@ Built on Azure Virtual Machine with ATU
 - menu bar at bottom
 - student number moved to menu bar
 - movies now clickable and can route over to the Movie menu tab to be viewed
+- cached movie details fixed for Movie screen
+- movies now clickable
+- Favourites methods created for adding and removing
+
+
 ...
 
 
